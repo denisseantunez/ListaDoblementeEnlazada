@@ -33,6 +33,7 @@ public:
   int ObtenerTam() const;
   void Vaciar();
   void Imprimir() const;
+  void ImprimirEnReversa() const;
 
   class ListaVacia : public std::exception {
   public:
@@ -131,7 +132,8 @@ template <typename T> void ListaDoble<T>::AgregarEnPos(T valor, int pos) {
     for (int i = 1; i < pos; ++i)
       ant = ant->siguiente;
     Elemento *nuevo = new Elemento(valor, ant->siguiente, ant);
-    ant->siguiente = nuevo;
+    ant -> siguiente -> anterior = nuevo;
+    ant -> siguiente = nuevo;
     ++tam;
   }
 }
@@ -275,6 +277,23 @@ template <typename T> void ListaDoble<T>::Imprimir() const {
       actual = actual->siguiente;
     }
     std::cout << "\b\b )" << std::endl;
+  }
+}
+
+/****************************************************************************************************************/
+
+template <typename T>
+void ListaDoble<T>::ImprimirEnReversa() const
+{
+  if(EstaVacia()) std::cout <<"( )" << std::endl;
+  else{
+    std::cout << "( ";
+    Elemento *actual = ultimo;
+    for(int i = 0; i < tam; ++i){
+         std::cout << actual -> valor << ", ";
+         actual = actual -> anterior;
+    }
+     std::cout << "\b\b  )";
   }
 }
 
