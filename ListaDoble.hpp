@@ -29,6 +29,8 @@ public:
   T ObtenerUltimo() const;
   T ObtenerEnPos(int pos) const;
 
+  T & operator[](int pos) ;
+
   void ModificarEnPos(int pos, T valor);
   int ObtenerTam() const;
   void Vaciar();
@@ -142,7 +144,7 @@ template <typename T> void ListaDoble<T>::AgregarEnPos(T valor, int pos) {
 
 template <typename T> void ListaDoble<T>::EliminarDelInicio() {
   if (EstaVacia())
-    throw EstaVacia();
+    throw ListaVacia();
   Elemento *porBorrar = primero;
   primero = primero->siguiente;
   delete porBorrar;
@@ -153,12 +155,14 @@ template <typename T> void ListaDoble<T>::EliminarDelInicio() {
 
 template <typename T> void ListaDoble<T>::EliminarDelFinal() {
   if (EstaVacia())
-    throw EstaVacia();
+    throw ListaVacia();
   Elemento *porBorrar = ultimo;
   ultimo = ultimo->anterior;
   if (tam == 1) {
-    ultimo->siguiente = nullptr;
-  }
+    primero = nullptr;
+    ultimo = nullptr;
+  }else ultimo->siguiente = nullptr;
+
   delete porBorrar;
   --tam;
 }
@@ -227,6 +231,19 @@ template <typename T> T ListaDoble<T>::ObtenerUltimo() const {
   if (EstaVacia())
     throw ListaVacia();
   return ultimo->valor;
+}
+
+/****************************************************************************************************************/
+
+// Para obtener
+template <typename T> T & ListaDoble<T>::operator[](int pos) {
+  if (EstaVacia())
+    throw ListaVacia();
+
+  Elemento *actual = primero;
+  for (int i = 0; i < pos; ++i)
+    actual = actual->siguiente;
+  return actual->valor;
 }
 
 /****************************************************************************************************************/
