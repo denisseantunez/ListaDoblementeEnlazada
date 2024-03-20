@@ -270,7 +270,7 @@ template <typename T> void ListaDoble<T>::Imprimir() const {
   else {
     std::cout << "( ";
     Elemento *actual = primero;
-    while (actual != NULL) {
+    while (actual != nullptr) {
       std::cout << actual->valor << ", ";
       actual = actual->siguiente;
     }
@@ -282,14 +282,14 @@ template <typename T> void ListaDoble<T>::Imprimir() const {
 
 template <typename T>
 const char *ListaDoble<T>::ListaVacia::what() const throw() {
-  return "Se intent\242 modificar una lista vac\241a...";
+  return "Se intento modificar una lista vacia..."; // TODO: Poner acento
 }
 
 /****************************************************************************************************************/
 
 template <typename T>
 const char *ListaDoble<T>::FueraDeRango::what() const throw() {
-  return "El \241ndice de posici\242n se encuentra fuera de rango...";
+  return "El indice de posicion se encuentra fuera de rango..."; // TODO: Poner acento
 }
 
 /****************************************************************************************************************/
@@ -301,7 +301,7 @@ void ListaDoble<T>::EliminarCondicion(bool (*condicion) (T valor)){
     Elemento* aux = primero;
     Elemento* auxSig = aux->siguiente;
     int pos = 0;
-    while (aux != NULL) {
+    while (aux != nullptr) {
       std::cout << "Lista: ";
       Imprimir();
       std::cout << "Valor[" << pos << "] = " << aux->valor << ", ";

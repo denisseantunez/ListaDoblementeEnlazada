@@ -83,7 +83,7 @@ int main() {
   } catch (const char* e) {
     cerr << "Error: " << e << endl;
   } catch (...) {
-    cerr << "Ocurrio un error inesperado" << endl;
+    cerr << "Ocurrio un error inesperado" << endl; // TODO: Poner acentos
   }
 
   return 0;
