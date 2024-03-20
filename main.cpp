@@ -1,30 +1,16 @@
-#include "ListaDoble.hpp" // Asegúrate de incluir el archivo de encabezado correctamente
 #include <iostream>
+#include "ListaDoble.hpp" // Asegúrate de incluir el archivo de encabezado correctamente
 
-using namespace std;
+//using namespace std;
 
-bool condicion(int num) { return (num % 2) == 0; }
+int main()
+{
+    // Crear una instancia de la lista
+    ListaDoble<int> lista;
 
-int main() {
-  // Crear una instancia de la lista
-  ListaDoble<int> lista;
+    /**try catch*/
 
-  /**try catch*/
-  try {
-    cout << "Metodo eliminar por condicion, eliminar si el numero es par" << endl;
-    for (int i = 0; i < 7; ++i) {
-      lista.AgregarAlFinal(i);
-    }
-    cout << "\nLista antes:" << endl;
-    lista.Imprimir();
-    cout << "*********************************" << endl;
-    lista.EliminarCondicion((condicion));
-    cout << "*********************************" << endl;
-    cout << "Lista despues:" << endl;
-    lista.Imprimir();
-    cout << "*********************************" << endl;
-
-    /* // Agregar elementos a la lista
+    // Agregar elementos a la lista
     lista.AgregarAlFinal(10);
     std::cout << std::endl;
     lista.Imprimir();
@@ -37,6 +23,8 @@ int main() {
     std::cout << std::endl;
     lista.Imprimir();
     std::cout << std::endl;
+    std::cout << "En reversa: " << std::endl;
+    lista.ImprimirEnReversa();
 
     // Imprimir la lista
     std::cout << "Lista después de agregar elementos: ";
@@ -72,19 +60,10 @@ int main() {
 
     // Verificar si la lista está vacía
     if (lista.EstaVacia()) {
-      std::cout << "La lista está vacía." << std::endl;
+        std::cout << "La lista está vacía." << std::endl;
     } else {
-      std::cout << "La lista no está vacía." << std::endl;
-    } */
-  } catch (ListaDoble<int>::ListaVacia &exc) {
-    cerr << "Error: " << exc.what() << endl;
-  } catch(ListaDoble<int>::FueraDeRango &exc) {
-    cerr << "Error: " << exc.what() << endl;
-  } catch (const char* e) {
-    cerr << "Error: " << e << endl;
-  } catch (...) {
-    cerr << "Ocurrio un error inesperado" << endl; // TODO: Poner acentos
-  }
+        std::cout << "La lista no está vacía." << std::endl;
+    }
 
-  return 0;
+    return 0;
 }
