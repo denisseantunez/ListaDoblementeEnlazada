@@ -19,7 +19,7 @@ int main() {
     cout << "\nLista antes:" << endl;
     lista.Imprimir();
     cout << "*********************************" << endl;
-    lista.EliminarCondicion((condicion));
+    lista.EliminarPorCondicion((condicion));
     cout << "*********************************" << endl;
     cout << "Lista despues:" << endl;
     lista.Imprimir();

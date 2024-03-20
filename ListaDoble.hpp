@@ -20,7 +20,7 @@ public:
   void EliminarDelInicio();
   void EliminarDelFinal();
   void EliminarDePos(int pos);
-  void EliminarCondicion(bool (*condicion) (T valor));
+  void EliminarPorCondicion(bool (*condicion)(T valor));
 
   bool SeEncuentraValor(T valor) const;
   int BuscarPos(T valor) const;
@@ -32,6 +32,7 @@ public:
   T & operator[](int pos) ;
 
   void ModificarEnPos(int pos, T valor);
+  void Ordenar(bool (*EsMayor)(T valor1, T valor2));
   int ObtenerTam() const;
   void Vaciar();
   void Imprimir() const;
@@ -325,17 +326,19 @@ const char *ListaDoble<T>::ListaVacia::what() const throw() {
 
 template <typename T>
 const char *ListaDoble<T>::FueraDeRango::what() const throw() {
-  return "El indice de posicion se encuentra fuera de rango..."; // TODO: Poner acento
+  return "El indice de posicion se encuentra fuera de rango..."; // TODO: Poner
+                                                                 // acento
 }
 
 /****************************************************************************************************************/
 
 template <typename T>
-void ListaDoble<T>::EliminarCondicion(bool (*condicion) (T valor)){
-  if (EstaVacia()) throw ListaVacia();
+void ListaDoble<T>::EliminarPorCondicion(bool (*condicion)(T valor)) {
+  if (EstaVacia())
+    throw ListaVacia();
   else {
-    Elemento* aux = primero;
-    Elemento* auxSig = aux->siguiente;
+    Elemento *aux = primero;
+    Elemento *auxSig = aux->siguiente;
     int pos = 0;
     while (aux != nullptr) {
       std::cout << "Lista: ";
@@ -352,6 +355,13 @@ void ListaDoble<T>::EliminarCondicion(bool (*condicion) (T valor)){
       auxSig = auxSig->siguiente;
     }
   }
+}
+
+/****************************************************************************************************************/
+
+template <typename T>
+void ListaDoble<T>::Ordenar(bool (*EsMayor)(T valor1, T valor2)) {
+
 }
 
 #endif // LISTADOBLE_HPP_INCLUDED
