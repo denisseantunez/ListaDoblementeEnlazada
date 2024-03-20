@@ -1,8 +1,8 @@
 # TODO:
 F - fácil, (1/6)  
-M - Mas o menos fácil, (0/8)  
+M - Mas o menos fácil, (1/8)  
 D - Díficil, (1/2)  
-Total: 2/16
+Total: 3/16
 
 _Por hacer_
 - [ ] Hacer que la denisse use el tab con 2 espacios - D <----
@@ -14,7 +14,7 @@ _Métodos que faltan:_
 - [ ] Agregar en pos - M
 - [ ] Eliminar en pos - M
 - [x] Imprimir lista en reversa - F
-- [ ] Acceder a un elemento (operador[]) - M
+- [x] Acceder a un elemento (operador[]) - M
 ```c++
 Lista[i] = 5;
 ```
