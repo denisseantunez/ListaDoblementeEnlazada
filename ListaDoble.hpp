@@ -21,6 +21,7 @@ public:
   void EliminarDelFinal();
   void EliminarDePos(int pos);
   void EliminarPorCondicion(bool (*condicion)(T valor));
+  void EliminarOcurrencia(T valor);
 
   bool SeEncuentraValor(T valor) const;
   int BuscarPos(T valor) const;
@@ -148,6 +149,10 @@ template <typename T> void ListaDoble<T>::EliminarDelInicio() {
     throw ListaVacia();
   Elemento *porBorrar = primero;
   primero = primero->siguiente;
+
+  if(primero == nullptr) ultimo = nullptr;
+  else primero -> anterior = nullptr;
+
   delete porBorrar;
   --tam;
 }
@@ -162,8 +167,9 @@ template <typename T> void ListaDoble<T>::EliminarDelFinal() {
   if (tam == 1) {
     primero = nullptr;
     ultimo = nullptr;
-  }else ultimo->siguiente = nullptr;
-
+  }else{
+    ultimo->siguiente = nullptr;
+  }
   delete porBorrar;
   --tam;
 }
@@ -187,6 +193,17 @@ template <typename T> void ListaDoble<T>::EliminarDePos(int pos) {
     delete porBorrar;
     --tam;
   }
+}
+
+/****************************************************************************************************************/
+
+template <typename T> void ListaDoble<T>::EliminarOcurrencia(T valor) {
+
+  if(EstaVacia()) throw ListaVacia();
+
+  while(SeEncuentraValor(valor))
+    EliminarDePos(BuscarPos(valor));
+
 }
 
 /****************************************************************************************************************/

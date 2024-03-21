@@ -47,7 +47,7 @@ int main() {
 
     // Modificar un elemento en una posicion especifica
     //lista.ModificarEnPos(1, 8); // Modificar el valor en la posicion 1 por 8
-    lista[1] = 8;
+    lista[1] = 5;
     cout << lista[1] << endl;
 
 
@@ -57,6 +57,15 @@ int main() {
     lista.Imprimir();
     cout << endl;
 
+    // Eliminar ocurrencias
+    lista.EliminarOcurrencia(5);
+    //lista.EliminarDePos(1);
+    //lista.EliminarDePos(0);
+    cout << "Lista despues de eliminar ocurrencias: ";
+    lista.Imprimir();
+
+    lista.AgregarAlFinal(5);
+    lista.AgregarAlFinal(5);
     // Eliminar elementos de la lista
     lista.EliminarDelInicio();
     cout << endl;
