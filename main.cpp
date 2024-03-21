@@ -1,5 +1,7 @@
 #include "ListaDoble.hpp" // Aseg�rate de incluir el archivo de encabezado correctamente
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -11,22 +13,25 @@ int main() {
 
 
   try {
-    /*
-    cout << "Metodo eliminar por condicion, eliminar si el numero es par" << endl;
+    
+    srand(time(NULL));
+    
+    cout << "Metodo de eliminar ocurrencia, eliminar todos los 2" << endl;
     for (int i = 0; i < 7; ++i) {
-      lista.AgregarAlFinal(i);
+      int n = 1 + rand() % 2;
+      lista.AgregarAlFinal(n);
     }
     cout << "\nLista antes:" << endl;
     lista.Imprimir();
     cout << "*********************************" << endl;
-    lista.EliminarPorCondicion((condicion));
+    lista.EliminarOcurrencia(2);
     cout << "*********************************" << endl;
     cout << "Lista despues:" << endl;
     lista.Imprimir();
     cout << "*********************************" << endl;
-    */
+   
 
-     // Agregar elementos a la lista
+     /* // Agregar elementos a la lista
     lista.AgregarAlFinal(10);
     cout << endl;
     lista.Imprimir();
@@ -90,7 +95,7 @@ int main() {
       cout << "La lista esta vacia." << endl;
     } else {
       cout << "La lista no esta vacia." << endl;
-    }
+    } */
 
   } catch (ListaDoble<int>::ListaVacia &exc) {
     cerr << "Error: " << exc.what() << endl;

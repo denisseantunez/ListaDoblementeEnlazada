@@ -201,9 +201,21 @@ template <typename T> void ListaDoble<T>::EliminarOcurrencia(T valor) {
 
   if(EstaVacia()) throw ListaVacia();
 
-  while(SeEncuentraValor(valor))
-    EliminarDePos(BuscarPos(valor));
+  Elemento *aux = primero;
+  int pos = 0;
 
+  while(aux != nullptr) {
+    if (aux->valor == valor) {
+      aux = aux->siguiente;
+      EliminarDePos(pos);
+    }
+    else {
+      pos++;
+      aux = aux->siguiente;
+    }
+    aux = auxSig;
+    if (auxSig != nullptr) auxSig = auxSig->siguiente;
+  }
 }
 
 /****************************************************************************************************************/
@@ -355,21 +367,15 @@ void ListaDoble<T>::EliminarPorCondicion(bool (*condicion)(T valor)) {
     throw ListaVacia();
   else {
     Elemento *aux = primero;
-    Elemento *auxSig = aux->siguiente;
     int pos = 0;
     while (aux != nullptr) {
-      std::cout << "Lista: ";
-      Imprimir();
-      std::cout << "Valor[" << pos << "] = " << aux->valor << ", ";
       if (condicion(aux->valor)) {
-        std::cout << "true" << std::endl;
+        aux = aux->siguiente;
         EliminarDePos(pos);
       } else {
-        std::cout << "false" << std::endl;
         ++pos;
+        aux = aux->siguiente;
       }
-      aux = auxSig;
-      auxSig = auxSig->siguiente;
     }
   }
 }
