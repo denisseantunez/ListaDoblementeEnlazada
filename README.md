@@ -1,8 +1,8 @@
 # TODO:
-F - fácil, (1/6)  
-M - Mas o menos fácil, (2/8)  
+F - fácil, (2/6)  
+M - Mas o menos fácil, (4/8)  
 D - Díficil, (1/2)  
-Total: 6/16
+Total: 7/16
 
 _Por hacer_
 - [ ] Hacer que la denisse use el tab con 2 espacios - D <----
@@ -19,7 +19,7 @@ _Métodos que faltan:_
 Lista[i] = 5;
 ```
 - [ ] Ordenar de forma ascendente ([puntero a funcion](https://www.geeksforgeeks.org/function-pointer-in-cpp/)) D
-- [ ] Intercambiar una lista con otro - F
+- [x] Intercambiar una lista con otro - F
 - [ ] Transferir elementos de una lista a otra
 	- [ ] Todos los elementos - M
 	- [ ] Los elementos desde una posición hasta otra (o desde un indice a otro) - M
