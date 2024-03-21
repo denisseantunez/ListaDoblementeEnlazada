@@ -230,6 +230,23 @@ template <typename T> void ListaDoble<T>::EliminarOcurrencia(T valor) {
 
 /****************************************************************************************************************/
 
+template <typename T> void ListaDoble<T>::EliminarRepetidos() {
+
+  if(EstaVacia()) throw ListaVacia();
+
+  ListaDoble<T> ListaSinRep;
+  Elemento * actual = primero;
+
+  for(int i = 0; i < tam; ++i){
+    if(!ListaSinRep.SeEncuentraValor(actual -> valor)) ListaSinRep.AgregarAlFinal(actual -> valor);
+    actual = actual -> siguiente;
+  }
+  *this = ListaSinRep;
+
+}
+
+/****************************************************************************************************************/
+
 template <typename T> bool ListaDoble<T>::SeEncuentraValor(T valor) const {
   Elemento *actual = primero;
   for (int i = 0; i < tam; ++i) {

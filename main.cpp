@@ -15,22 +15,22 @@ int main() {
   try {
 
     srand(time(NULL));
-    /*
+
     cout << "Metodo de eliminar ocurrencia, eliminar todos los 2" << endl;
     for (int i = 0; i < 7; ++i) {
-      int n = 1 + rand() % 2;
+      int n = 1 + rand() % 10;
       lista.AgregarAlFinal(n);
     }
     cout << "\nLista antes:" << endl;
     lista.Imprimir();
     cout << "*********************************" << endl;
-    lista.EliminarOcurrencia(2);
+    lista.EliminarRepetidos();
     cout << "*********************************" << endl;
     cout << "Lista despues:" << endl;
     lista.Imprimir();
     cout << "*********************************" << endl;
-    */
 
+    /*
     cout << "Intercambiar listas" << endl;
     ListaDoble<int> lista1;
     ListaDoble<int> lista2;
@@ -59,7 +59,7 @@ int main() {
     cout << "*********************************" << endl;
 
 
-     /* // Agregar elementos a la lista
+    // Agregar elementos a la lista
     lista.AgregarAlFinal(10);
     cout << endl;
     lista.Imprimir();
