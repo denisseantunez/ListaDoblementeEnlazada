@@ -1,8 +1,8 @@
 # TODO:
-F - fácil, (2/6)  
+F - fácil, (3/6)  
 M - Mas o menos fácil, (4/8)  
 D - Díficil, (1/2)  
-Total: 7/16
+Total: 8/16
 
 _Por hacer_
 - [ ] Hacer que la denisse use el tab con 2 espacios - D <----
@@ -28,4 +28,4 @@ Lista[i] = 5;
 _Métodos de eliminar especiales:_
 - [x] Toda ocurrencia de un elemento - M
 - [x] Todo elemento que cumpla cierta condición (puntero a funcion) - D
-- [ ] Todo elemento repetido - F
+- [x] Todo elemento repetido - F
