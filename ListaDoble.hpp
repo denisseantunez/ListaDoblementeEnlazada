@@ -22,6 +22,7 @@ public:
   void EliminarDePos(int pos);
   void EliminarPorCondicion(bool (*condicion)(T valor));
   void EliminarOcurrencia(T valor);
+  void EliminarRepetidos();
 
   bool SeEncuentraValor(T valor) const;
   int BuscarPos(T valor) const;
@@ -30,10 +31,12 @@ public:
   T ObtenerUltimo() const;
   T ObtenerEnPos(int pos) const;
 
+
   T & operator[](int pos) ;
 
   void ModificarEnPos(int pos, T valor);
   void Ordenar(bool (*EsMayor)(T valor1, T valor2));
+  void Intercambiar(ListaDoble<T> & lista);
   int ObtenerTam() const;
   void Vaciar();
   void Imprimir() const;
@@ -90,11 +93,11 @@ ListaDoble<T>::ListaDoble(ListaDoble<T> &lista)
 
 template <typename T>
 ListaDoble<T> &ListaDoble<T>::operator=(const ListaDoble<T> &lista) {
-  if (this == &l) return *this;
+    if (this == &lista) return *this;
   Vaciar();
-  Elemento* porAgregar = l.frente;
+  Elemento* porAgregar = lista.primero;
   while (porAgregar != NULL){
-    AgregarAlFondo(porAgregar->valor);
+    AgregarAlFinal(porAgregar->valor);
     porAgregar = porAgregar->siguiente;
   }
   return *this;
@@ -208,6 +211,7 @@ template <typename T> void ListaDoble<T>::EliminarOcurrencia(T valor) {
   if(EstaVacia()) throw ListaVacia();
 
   Elemento *aux = primero;
+  Elemento *auxSig = aux -> siguiente;
   int pos = 0;
 
   while(aux != nullptr) {
@@ -304,6 +308,17 @@ template <typename T> void ListaDoble<T>::ModificarEnPos(int pos, T valor) {
     ant = ant->siguiente;
   ant->siguiente->valor = valor;
 }
+
+/****************************************************************************************************************/
+
+template <typename T> void ListaDoble<T>::Intercambiar(ListaDoble<T> & lista) {
+  ListaDoble<T> aux;
+
+  aux = lista;
+  lista = *this;
+  *this = aux;
+}
+
 
 /****************************************************************************************************************/
 

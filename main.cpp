@@ -13,9 +13,9 @@ int main() {
 
 
   try {
-    
+
     srand(time(NULL));
-    
+    /*
     cout << "Metodo de eliminar ocurrencia, eliminar todos los 2" << endl;
     for (int i = 0; i < 7; ++i) {
       int n = 1 + rand() % 2;
@@ -29,7 +29,35 @@ int main() {
     cout << "Lista despues:" << endl;
     lista.Imprimir();
     cout << "*********************************" << endl;
-   
+    */
+
+    cout << "Intercambiar listas" << endl;
+    ListaDoble<int> lista1;
+    ListaDoble<int> lista2;
+    int x, n;
+
+    for (int i = 0; i < 7; ++i) {
+      n = 1 + rand() % 2;
+      lista1.AgregarAlFinal(n);
+      x = i + rand() % 2;
+      lista2.AgregarAlFinal(x);
+    }
+    cout << "\nLista1:" << endl;
+    lista1.Imprimir();
+    cout << "*********************************" << endl;
+    cout << "\nLista2:" << endl;
+    lista2.Imprimir();
+    cout << "*********************************" << endl;
+    lista1.Intercambiar(lista2);
+    cout << "*********************************" << endl;
+    cout << "Lista despues de intercambiar:" << endl;
+    cout << "\nLista1:" << endl;
+    lista1.Imprimir();
+    cout << "*********************************" << endl;
+    cout << "\nLista2:" << endl;
+    lista2.Imprimir();
+    cout << "*********************************" << endl;
+
 
      /* // Agregar elementos a la lista
     lista.AgregarAlFinal(10);
