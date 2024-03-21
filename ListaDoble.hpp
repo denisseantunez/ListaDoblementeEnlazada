@@ -35,8 +35,9 @@ public:
   T & operator[](int pos) ;
 
   void ModificarEnPos(int pos, T valor);
-  void Ordenar(bool (*EsMayor)(T valor1, T valor2));
+  void Ordenar(bool (*EsMenor)(T valor1, T valor2));
   void Intercambiar(ListaDoble<T> & lista);
+  void IntercambiarElementos(int posElemento1, int posElemento2);
   int ObtenerTam() const;
   void Vaciar();
   void Imprimir() const;
@@ -60,7 +61,7 @@ private:
     Elemento *siguiente;
     Elemento *anterior;
     Elemento(T valor, Elemento *sig = nullptr, Elemento *ant = nullptr);
-  } * ultimo, *primero;
+  } *ultimo, *primero;
 };
 
 /****************************************************************************************************************/
@@ -421,8 +422,34 @@ void ListaDoble<T>::EliminarPorCondicion(bool (*condicion)(T valor)) {
 /****************************************************************************************************************/
 
 template <typename T>
-void ListaDoble<T>::Ordenar(bool (*EsMayor)(T valor1, T valor2)) {
+void ListaDoble<T>::Ordenar(bool (*EsMenor)(T valor1, T valor2)) {
+  if (EstaVacia()) throw ListaVacia();
+  int min;
+  for (int i = 0; i < tam-1; ++i) {
+    min = i;
+    for (int j = i+1; j < tam; ++j) {
+      // TODO: Ver si lo puedo hacer con el operador []
+      T elemento_j = ObtenerEnPos(j); 
+      T elemento_min = ObtenerEnPos(min);
+      if (EsMenor(elemento_j, elemento_min))
+        min = j;
+    }
+    IntercambiarElementos(i, min);
+  }
+}
 
+/****************************************************************************************************************/
+
+template <typename T>
+void ListaDoble<T>::IntercambiarElementos(int posElemento1, int posElemento2) {
+  if (posElemento1 < 0 || posElemento1 >= tam) throw FueraDeRango();
+  else if (posElemento2 < 0 || posElemento2 >= tam) throw FueraDeRango();
+  else if (posElemento2 != posElemento2) {
+    T aux = ObtenerEnPos(posElemento1);
+    // TODO: Ver si lo puedo hacer con el operador []
+    ModificarEnPos(posElemento1, ObtenerEnPos(posElemento2));
+    ModificarEnPos(posElemento2, aux);
+  }
 }
 
 #endif // LISTADOBLE_HPP_INCLUDED
