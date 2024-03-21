@@ -1,10 +1,3 @@
-# TODO:
-F - fácil, (3/5)  
-M - Mas o menos fácil, (4/8)  
-D - Díficil, (2/2)  
-Total: 8/16
-
----
 ## NOTA:
 Preguntarle a Irene que tan estricta va a ser con la eficiencia,
 por ejemplo, en el metodo Ordenar uso el metodo ObtenerEnPos, pero
@@ -13,6 +6,12 @@ el metodo Ordenar usa mucho este metodo, por lo que sería mas
 eficiente accesar a estos valores con manualmente con un puntero,
 para evitar recorrer la lista cada vez
 ---
+
+# TODO:
+F - fácil, (3/5)  
+M - Mas o menos fácil, (4/8)  
+D - Díficil, (2/2)  
+Total: 8/16
 
 _Por hacer_
 - [ ] Hacer que la denisse use el tab con 2 espacios - D <---- jajajajajaja porque dificiiiilll
