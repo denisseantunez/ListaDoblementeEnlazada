@@ -2,7 +2,7 @@
 F - fácil, (1/6)  
 M - Mas o menos fácil, (2/8)  
 D - Díficil, (1/2)  
-Total: 5/16
+Total: 6/16
 
 _Por hacer_
 - [ ] Hacer que la denisse use el tab con 2 espacios - D <----
