@@ -90,8 +90,14 @@ ListaDoble<T>::ListaDoble(ListaDoble<T> &lista)
 
 template <typename T>
 ListaDoble<T> &ListaDoble<T>::operator=(const ListaDoble<T> &lista) {
-  if (this == &lista)
-    return *this;
+  if (this == &l) return *this;
+  Vaciar();
+  Elemento* porAgregar = l.frente;
+  while (porAgregar != NULL){
+    AgregarAlFondo(porAgregar->valor);
+    porAgregar = porAgregar->siguiente;
+  }
+  return *this;
 }
 
 /****************************************************************************************************************/
