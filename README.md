@@ -24,9 +24,6 @@ _Métodos que faltan:_
 - [x] Eliminar en pos - M
 - [x] Imprimir lista en reversa - F
 - [x] Acceder a un elemento (operador[]) - M
-```c++
-Lista[i] = 5;
-```
 - [x] Ordenar de forma ascendente ([puntero a funcion](https://www.geeksforgeeks.org/function-pointer-in-cpp/)) D
 - [x] Intercambiar una lista con otro - F
 - [ ] Transferir elementos de una lista a otra

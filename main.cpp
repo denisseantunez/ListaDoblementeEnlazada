@@ -25,6 +25,7 @@ int main() {
     }
     cout << "\nLista antes:" << endl;
     lista.Imprimir();
+    lista.Ordenar();
     cout << "*********************************" << endl;
     cout << "Lista despues:" << endl;
     lista.Ordenar(EsMenor);
