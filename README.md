@@ -11,10 +11,10 @@ para evitar recorrer la lista cada vez
 F - fácil, (3/5)  
 M - Mas o menos fácil, (4/8)  
 D - Díficil, (2/2)  
-Total: 8/16
+Total: 9/16
 
 _Por hacer_
-- [ ] Hacer que la denisse use el tab con 2 espacios - D <---- jajajajajaja porque dificiiiilll
+- [x] Hacer que la denisse use el tab con 2 espacios - D <---- jajajajajaja porque dificiiiilll (no quedo de oootra)
 - [ ] Documentar el código - F
 - [ ] Generar la documentación - F
 - [ ] Bitácora - M
