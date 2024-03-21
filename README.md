@@ -41,3 +41,13 @@ _Métodos de eliminar especiales:_
 - [x] Toda ocurrencia de un elemento - M
 - [x] Todo elemento que cumpla cierta condición (puntero a funcion) - D
 - [x] Todo elemento repetido - F
+
+_Métodos que he hecho (Omar):_  
+- Ordenar
+- EliminarPorCondicion
+- Operador=
+
+_Cosas que hicimos juntos:_  
+- Organizar el TODO
+- Repartirnos los metodos a hacer
+- Metodo EliminarOcurrencia
