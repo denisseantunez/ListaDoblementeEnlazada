@@ -452,16 +452,12 @@ void ListaDoble<T>::EliminarPorCondicion(bool (*condicion)(T valor)) {
 /****************************************************************************************************************/
 
 template <typename T>
-void ListaDoble<T>::Ordenar(/*bool (*EsMayor)(T valor1, T valor2)*/) {
+void ListaDoble<T>::Ordenar() {
   Elemento *actual = primero -> siguiente;
   while(actual != nullptr){
     while(actual -> anterior != nullptr && actual -> anterior -> valor > actual -> valor){
-        /*
-        actual -> anterior = actual -> anterior -> anterior;
-        actual -> anterior -> anterior = actual;
-        actual -> anterior -> siguiente = actual -> siguiente;
-        actual -> siguiente = actual -> anterior;
-        actual -> siguiente -> anterior = actual -> anterior;*/
+
+
         Elemento *anteriorTemp = actual->anterior;
         actual->anterior = anteriorTemp->anterior;
         if (anteriorTemp->anterior != nullptr) {
@@ -472,12 +468,15 @@ void ListaDoble<T>::Ordenar(/*bool (*EsMayor)(T valor1, T valor2)*/) {
         anteriorTemp->siguiente = actual->siguiente;
         if (actual->siguiente != nullptr) {
           actual->siguiente->anterior = anteriorTemp;
+        } else {
+            ultimo = anteriorTemp;
         }
         actual->siguiente = anteriorTemp;
         anteriorTemp->anterior = actual;
 
     }
     actual = actual -> siguiente;
+
   }
 }
 
