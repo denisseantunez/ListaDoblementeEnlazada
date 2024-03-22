@@ -46,17 +46,17 @@ int main() {
     lista1.Imprimir();
     cout << "*********************************" << endl;
     cout << "\nLista2:" << endl;
-    //lista2.Imprimir();
+    lista2.Imprimir();
     cout << "*********************************" << endl;
-    //lista1.Transferir(lista2);
-    lista1.Ordenar();
+    lista1.Transferir(lista2, 0, 6);
+    //lista1.Ordenar();
     cout << "*********************************" << endl;
     cout << "Lista despues de ordenar:" << endl;
     cout << "\nLista1:" << endl;
     lista1.Imprimir();
     cout << "*********************************" << endl;
-    //cout << "\nLista2:" << endl;
-    //lista2.Imprimir();
+    cout << "\nLista2:" << endl;
+    lista2.Imprimir();
     cout << "*********************************" << endl;
 
     /*

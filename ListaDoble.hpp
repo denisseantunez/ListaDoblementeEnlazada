@@ -47,7 +47,7 @@ public:
   T & operator[](int pos) ;
 
   void ModificarEnPos(int pos, T valor);
-  void Ordenar(/*bool (*EsMayor)(T valor1, T valor2)*/);
+  void Ordenar();
   void Intercambiar(ListaDoble<T> &lista);
   void Transferir(ListaDoble<T> &lista);
   void Transferir(ListaDoble<T> &lista, int posInicial, int posFinal);
@@ -362,9 +362,42 @@ template <typename T> void ListaDoble<T>::Intercambiar(ListaDoble<T> & lista) {
 /****************************************************************************************************************/
 
 template <typename T> void ListaDoble<T>::Transferir(ListaDoble<T> & lista) {
-  //ultimo -> siguiente = lista.ObtenerPunteroPrimero();
-  //lista.ObtenerPunteroUltimo() = nullptr;
-  tam += lista.ObtenerTam();
+
+
+}
+
+/****************************************************************************************************************/
+
+template <typename T> void ListaDoble<T>::Transferir(ListaDoble<T> &lista, int posInicial, int posFinal) {
+
+    //checar si indice está fuera de rango :)
+
+    Elemento *primeroATransf = lista.primero;
+    Elemento *ultimoATransf = lista.primero;
+
+    for(int i = 0; i < posInicial; ++i){
+        primeroATransf = primeroATransf -> siguiente;
+    }
+
+    for(int i = 0; i < posFinal; ++i){
+        ultimoATransf = ultimoATransf -> siguiente;
+    }
+
+    // Actualizar los punteros de la lista instancia
+    if (ultimo != nullptr) {
+        ultimo->siguiente = primeroATransf; // El siguiente del último apunta al primero a transferir
+    }
+
+    if (primeroATransf->anterior != nullptr) {
+        primeroATransf->anterior->siguiente = ultimoATransf->siguiente; // El siguiente del anterior al primero apunta al siguiente del último a transferir
+    }
+
+    primeroATransf->anterior = ultimo; // El anterior del primero a transferir apunta al último de la lista instancia
+    ultimo = ultimoATransf; // Actualizar el puntero 'ultimo' al último de la lista transferida
+    ultimoATransf->siguiente = nullptr; // El siguiente del último a transferir apunta a nulo (final de la lista)
+
+    lista.tam -= posFinal - posInicial;
+    tam += posFinal - posInicial;
 
 }
 
