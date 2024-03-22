@@ -7,6 +7,17 @@
 #define NO_ENCONTRADO (-1)
 
 template <typename T> class ListaDoble {
+
+private:
+  int tam;
+
+  struct Elemento {
+    T valor;
+    Elemento *siguiente;
+    Elemento *anterior;
+    Elemento(T valor, Elemento *sig = nullptr, Elemento *ant = nullptr);
+  } * ultimo, *primero;
+
 public:
   ListaDoble();
   ListaDoble(ListaDoble<T> &lista);
@@ -32,13 +43,14 @@ public:
   T ObtenerEnPos(int pos) const;
 
 
+  const T & operator[](int pos) const;
   T & operator[](int pos) ;
 
   void ModificarEnPos(int pos, T valor);
-  void Ordenar(bool (*EsMenor)(T valor1, T valor2));
-  void Ordenar();
-  void Intercambiar(ListaDoble<T> & lista);
-  void IntercambiarElementos(int posElemento1, int posElemento2);
+  void Ordenar(/*bool (*EsMayor)(T valor1, T valor2)*/);
+  void Intercambiar(ListaDoble<T> &lista);
+  void Transferir(ListaDoble<T> &lista);
+  void Transferir(ListaDoble<T> &lista, int posInicial, int posFinal);
   int ObtenerTam() const;
   void Vaciar();
   void Imprimir() const;
@@ -54,15 +66,7 @@ public:
     virtual const char *what() const throw();
   };
 
-private:
-  int tam;
 
-  struct Elemento {
-    T valor;
-    Elemento *siguiente;
-    Elemento *anterior;
-    Elemento(T valor, Elemento *sig = nullptr, Elemento *ant = nullptr);
-  } *ultimo, *primero;
 };
 
 /****************************************************************************************************************/
@@ -294,10 +298,23 @@ template <typename T> T ListaDoble<T>::ObtenerUltimo() const {
 
 /****************************************************************************************************************/
 
-// Para obtener
+// Para izquierda
 template <typename T> T & ListaDoble<T>::operator[](int pos) {
-  if (EstaVacia())
-    throw ListaVacia();
+
+  if(pos < 0 || pos >= tam) throw FueraDeRango();
+
+  Elemento *actual = primero;
+  for (int i = 0; i < pos; ++i)
+    actual = actual->siguiente;
+  return actual->valor;
+}
+
+/****************************************************************************************************************/
+
+// Para derecha
+template <typename T> const T & ListaDoble<T>::operator[](int pos) const {
+
+  if(pos < 0 || pos >= tam) throw FueraDeRango();
 
   Elemento *actual = primero;
   for (int i = 0; i < pos; ++i)
@@ -330,6 +347,10 @@ template <typename T> void ListaDoble<T>::ModificarEnPos(int pos, T valor) {
 
 /****************************************************************************************************************/
 
+
+
+/****************************************************************************************************************/
+
 template <typename T> void ListaDoble<T>::Intercambiar(ListaDoble<T> & lista) {
   ListaDoble<T> aux;
 
@@ -338,6 +359,14 @@ template <typename T> void ListaDoble<T>::Intercambiar(ListaDoble<T> & lista) {
   *this = aux;
 }
 
+/****************************************************************************************************************/
+
+template <typename T> void ListaDoble<T>::Transferir(ListaDoble<T> & lista) {
+  //ultimo -> siguiente = lista.ObtenerPunteroPrimero();
+  //lista.ObtenerPunteroUltimo() = nullptr;
+  tam += lista.ObtenerTam();
+
+}
 
 /****************************************************************************************************************/
 
@@ -346,9 +375,9 @@ template <typename T> int ListaDoble<T>::ObtenerTam() const { return tam; }
 /****************************************************************************************************************/
 
 template <typename T> void ListaDoble<T>::Vaciar() {
-  while (!EstaVacia()) {
-    EliminarDelInicio();
-  }
+    while (!EstaVacia()) {
+        EliminarDelFinal();
+    }
 }
 
 /****************************************************************************************************************/
@@ -388,14 +417,14 @@ void ListaDoble<T>::ImprimirEnReversa() const
 
 template <typename T>
 const char *ListaDoble<T>::ListaVacia::what() const throw() {
-  return "Se intento modificar una lista vacia..."; // TODO: Poner acento
+  return "Se intent\242 modificar una lista vac\241a..."; // TODO: Poner acento
 }
 
 /****************************************************************************************************************/
 
 template <typename T>
 const char *ListaDoble<T>::FueraDeRango::what() const throw() {
-  return "El indice de posicion se encuentra fuera de rango..."; // TODO: Poner
+  return "El \241ndice de posici\242n se encuentra fuera de rango..."; // TODO: Poner
                                                                  // acento
 }
 
@@ -423,52 +452,32 @@ void ListaDoble<T>::EliminarPorCondicion(bool (*condicion)(T valor)) {
 /****************************************************************************************************************/
 
 template <typename T>
-void ListaDoble<T>::Ordenar(bool (*EsMenor)(T valor1, T valor2)) {
-  if (EstaVacia()) throw ListaVacia();
-  int min;
-  for (int i = 0; i < tam-1; ++i) {
-    min = i;
-    for (int j = i+1; j < tam; ++j) {
-      // TODO: Ver si lo puedo hacer con el operador []
-      T elemento_j = ObtenerEnPos(j); 
-      T elemento_min = ObtenerEnPos(min);
-      if (EsMenor(elemento_j, elemento_min))
-        min = j;
+void ListaDoble<T>::Ordenar(/*bool (*EsMayor)(T valor1, T valor2)*/) {
+  Elemento *actual = primero -> siguiente;
+  while(actual != nullptr){
+    while(actual -> anterior != nullptr && actual -> anterior -> valor > actual -> valor){
+        /*
+        actual -> anterior = actual -> anterior -> anterior;
+        actual -> anterior -> anterior = actual;
+        actual -> anterior -> siguiente = actual -> siguiente;
+        actual -> siguiente = actual -> anterior;
+        actual -> siguiente -> anterior = actual -> anterior;*/
+        Elemento *anteriorTemp = actual->anterior;
+        actual->anterior = anteriorTemp->anterior;
+        if (anteriorTemp->anterior != nullptr) {
+          anteriorTemp->anterior->siguiente = actual;
+        } else {
+          primero = actual;
+        }
+        anteriorTemp->siguiente = actual->siguiente;
+        if (actual->siguiente != nullptr) {
+          actual->siguiente->anterior = anteriorTemp;
+        }
+        actual->siguiente = anteriorTemp;
+        anteriorTemp->anterior = actual;
+
     }
-    IntercambiarElementos(i, min);
-  }
-}
-
-/****************************************************************************************************************/
-
-template <typename T>
-void ListaDoble<T>::Ordenar() {
-  if (EstaVacia()) throw ListaVacia();
-  int min;
-  for (int i = 0; i < tam-1; ++i) {
-    min = i;
-    for (int j = i+1; j < tam; ++j) {
-      // TODO: Ver si lo puedo hacer con el operador []
-      T elemento_j = ObtenerEnPos(j); 
-      T elemento_min = ObtenerEnPos(min);
-      if (elemento_j < elemento_min)
-        min = j;
-    }
-    IntercambiarElementos(i, min);
-  }
-}
-
-/****************************************************************************************************************/
-
-template <typename T>
-void ListaDoble<T>::IntercambiarElementos(int posElemento1, int posElemento2) {
-  if (posElemento1 < 0 || posElemento1 >= tam) throw FueraDeRango();
-  else if (posElemento2 < 0 || posElemento2 >= tam) throw FueraDeRango();
-  else if (posElemento1 != posElemento2) {
-    T aux = ObtenerEnPos(posElemento1);
-    // TODO: Ver si lo puedo hacer con el operador []
-    ModificarEnPos(posElemento1, ObtenerEnPos(posElemento2));
-    ModificarEnPos(posElemento2, aux);
+    actual = actual -> siguiente;
   }
 }
 
