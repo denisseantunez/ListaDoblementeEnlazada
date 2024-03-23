@@ -8,124 +8,80 @@ using namespace std;
 bool condicion(int num) { return (num % 2) == 0; }
 
 int main() {
-  // Crear una instancia de la lista
-  ListaDoble<int> lista;
-
+  srand(time(nullptr));
 
   try {
 
-    srand(time(NULL));
-    /*
-    cout << "Metodo de eliminar ocurrencia, eliminar todos los 2" << endl;
-    for (int i = 0; i < 7; ++i) {
-      int n = 1 + rand() % 10;
-      lista.AgregarAlFinal(n);
-    }
-    cout << "\nLista antes:" << endl;
-    lista.Imprimir();
-    cout << "*********************************" << endl;
-    lista.EliminarRepetidos();
-    cout << "*********************************" << endl;
-    cout << "Lista despues:" << endl;
-    lista.Imprimir();
-    cout << "*********************************" << endl;
-    */
-
-    cout << "Ordenar listas" << endl;
+    // Transferir elementos de una lista a otra
     ListaDoble<int> lista1;
     ListaDoble<int> lista2;
-    int x, n;
-
-    for (int i = 0; i < 7; ++i) {
-      n = 1 + rand() % 10;
+    int n = 1 + rand() % 9;
+    for (int i = 0; i < 10; ++i) {
       lista1.AgregarAlFinal(n);
-      x = i + rand() % 2;
-      lista2.AgregarAlFinal(x);
+      lista2.AgregarAlFinal(n);
     }
-    cout << "\nLista1:" << endl;
+    cout << "Lista 1: ";
     lista1.Imprimir();
-    cout << "*********************************" << endl;
-    cout << "\nLista2:" << endl;
+    cout << "Lista 2: ";
     lista2.Imprimir();
-    cout << "*********************************" << endl;
-    lista1.Transferir(lista2, 0, 6);
-    //lista1.Ordenar();
-    cout << "*********************************" << endl;
-    cout << "Lista despues de ordenar:" << endl;
-    cout << "\nLista1:" << endl;
+    cout << "**********************************" << endl;
+    cout << "Eliminar pares" << endl;
+    lista1.EliminarPorCondicion(condicion);
+    cout << "Lista 1: ";
     lista1.Imprimir();
-    cout << "*********************************" << endl;
-    cout << "\nLista2:" << endl;
+    lista2.EliminarPorCondicion(condicion);
+    cout << "Lista 2: ";
     lista2.Imprimir();
-    cout << "*********************************" << endl;
+    cout << "**********************************" << endl;
+    cout << "Transferir los elementos del 3-6 de la lista 2"
+    << " a la lista 1" << endl;
+    lista1.Transferir(lista2, 3);
+    cout << "Lista 1: ";
+    lista1.Imprimir();
+    cout << "Lista 2: ";
+    lista2.Imprimir();
+    cout << "**********************************" << endl;
+    cout << "Intercambiar listas" << endl;
+    lista1.Intercambiar(lista2);
+    cout << "Lista 1: ";
+    lista1.Imprimir();
+    cout << "Lista 2: ";
+    lista2.Imprimir();
+    cout << "**********************************" << endl;
+    cout << "Eliminar pares" << endl;
+    lista1.EliminarPorCondicion(condicion);
+    cout << "Lista 1: ";
+    lista1.Imprimir();
+    lista2.EliminarPorCondicion(condicion);
+    cout << "Lista 2: ";
+    lista2.Imprimir();
+    cout << "**********************************" << endl;
+    cout << "Eliminar repetidos" << endl;
+    lista1.EliminarRepetidos();
+    cout << "Lista 1: ";
+    lista1.Imprimir();
+    lista2.EliminarRepetidos();
+    cout << "Lista 2: ";
+    lista2.Imprimir();
+  // Ordenar una lista
+  /* srand(time(nullptr));
+  ListaDoble<int> lista;
+  for (int i = 0; i < 7; ++i) {
+    int x = 1 + rand() % 9;
+    lista.AgregarAlFinal(x);
+  }
 
-    /*
-    // Agregar elementos a la lista
-    lista.AgregarAlFinal(10);
-    cout << endl;
-    lista.Imprimir();
-    cout << endl;
-    lista.AgregarAlInicio(5);
-    cout << endl;
-    lista.Imprimir();
-    cout << endl;
-    lista.AgregarEnPos(15, 1); // Agregar el valor 15 en la posicion 1
-    cout << endl;
-    lista.Imprimir();
-    cout << endl;
-
-    // Imprimir la lista
-    cout << "Lista despues de agregar elementos: " << endl;
-    lista.Imprimir();
-    cout << endl;
-
-    // Modificar un elemento en una posicion especifica
-    //lista.ModificarEnPos(1, 8); // Modificar el valor en la posicion 1 por 8
-    lista[1] = 5;
-    cout << lista[1] << endl;
-
-
-
-    // Imprimir la lista despues de la modificacion
-    cout << "Lista despues de modificar el elemento en la posici�n 1: ";
-    lista.Imprimir();
-    cout << endl;
-
-    // Eliminar ocurrencias
-    lista.EliminarOcurrencia(5);
-    //lista.EliminarDePos(1);
-    //lista.EliminarDePos(0);
-    cout << "Lista despues de eliminar ocurrencias: ";
-    lista.Imprimir();
-
-    lista.AgregarAlFinal(5);
-    lista.AgregarAlFinal(5);
-    // Eliminar elementos de la lista
+  cout << "Lista: ";
+  lista.Imprimir();
+  cout << "Lista ordenada: ";
+  lista.Ordenar();
+  lista.Imprimir();
+  cout << "*******************************" << endl;
+  for (int i = 0; i < 7; ++i) {
     lista.EliminarDelInicio();
-    cout << endl;
+    cout << "Lista: ";
     lista.Imprimir();
-    cout << endl;
-    lista.EliminarDelFinal();
-    cout << endl;
-    lista.Imprimir();
-    cout << endl;
-    lista.EliminarDePos(0); // Eliminar el elemento en la posicion 0
-    cout << endl;
-    lista.Imprimir();
-    cout << endl;
-
-    // Imprimir la lista despues de eliminar elementos
-    cout << "Lista despu�s de eliminar elementos: ";
-    lista.Imprimir();
-    cout << endl;
-
-    // Verificar si la lista esta vacia
-    if (lista.EstaVacia()) {
-      cout << "La lista esta vacia." << endl;
-    } else {
-      cout << "La lista no esta vacia." << endl;
-    } */
-
+  } */
   } catch (ListaDoble<int>::ListaVacia &exc) {
     cerr << "Error: " << exc.what() << endl;
   } catch(ListaDoble<int>::FueraDeRango &exc) {
